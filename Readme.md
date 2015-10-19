@@ -113,6 +113,13 @@ using the `tooltip-html=""` attribute
 ```html
 <a href="#" tooltips tooltip-title="tip" tooltip-html="<i>Woa!</i>">Tooltip me</a>
 ```
+
+If you include ngSanatize angular module in your project the html content will be sanatized with ng-bind-html. To prevent the sanitization you can use the `tooltip-trust-html=""` attribute (only use with trusted html). Default: `false`
+
+```html
+<a href="#" tooltips tooltip-title="tip" tooltip-html="<i onclick='MyFunction()'>Woa!</i>" tooltip-trust-html="1">Tooltip me</a>
+```
+
 ####Tooltip view
 You can use your own view inside the tooltip
 using the `tooltip-view=""` attribute

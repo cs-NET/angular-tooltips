@@ -17,6 +17,7 @@
       , 'delay': 0
       , 'lazy': true
       , 'closeButton': null
+      , 'trustHtml': false
     };
 
     this.options = function optionsAccessor() {
@@ -65,6 +66,7 @@
           , tooltipScroll = attr.tooltipScroll || tooltipsConfig.scroll
           , content = attr.tooltipContent || ''
           , html = attr.tooltipHtml || ''
+          , trustHtml = typeof attr.tooltipTrustHtml !== 'undefined' && attr.tooltipTrustHtml !== null ?  $scope.$eval(attr.tooltipTrustHtml) : tooltipsConfig.trustHtml
           , showTriggers = attr.tooltipShowTrigger || tooltipsConfig.showTrigger
           , hideTriggers = attr.tooltipHideTrigger || tooltipsConfig.hideTrigger
           , hideTarget = typeof attr.tooltipHideTarget !== 'undefined' && attr.tooltipHideTarget !== null ? attr.tooltipHideTarget : tooltipsConfig.hideTarget
@@ -107,7 +109,7 @@
         $scope.html = html;
 
         $scope.getHtml = function(){
-          return $sce.trustAsHtml($scope.html);
+          return trustHtml ? $sce.trustAsHtml($scope.html) : $scope.html;
         };
 
         //parse the animation speed of tooltips
